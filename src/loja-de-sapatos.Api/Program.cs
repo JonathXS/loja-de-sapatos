@@ -1,4 +1,6 @@
 
+using loja_de_sapatos.Api.Configuration.DI;
+
 namespace loja_de_sapatos.Api
 {
     public class Program
@@ -6,7 +8,9 @@ namespace loja_de_sapatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var configuration = builder.Configuration;
 
+            builder.Services.AdicionarInfraestrutura(configuration);
             // Add services to the container.
 
             builder.Services.AddControllers();
