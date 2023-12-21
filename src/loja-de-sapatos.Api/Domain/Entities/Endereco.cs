@@ -8,9 +8,8 @@
         public string Cidade { get; set; }
         public string Estado { get; set; }
 
-        public Endereco(int id, string rua, int numero, string bairro, string cidade, string estado)
+        public Endereco(string rua, int numero, string bairro, string cidade, string estado)
         {
-            Id = id;
             Rua = rua;
             Numero = numero;
             Bairro = bairro;

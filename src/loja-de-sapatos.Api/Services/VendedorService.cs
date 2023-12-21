@@ -1,10 +1,11 @@
 ﻿using loja_de_sapatos.Api.Domain.DTO.Request;
 using loja_de_sapatos.Api.Domain.Entities;
 using loja_de_sapatos.Api.Domain.Interfaces.Repositories;
+using loja_de_sapatos.Api.Domain.Interfaces.Services;
 
 namespace loja_de_sapatos.Api.Services
 {
-    public class VendedorService
+    public class VendedorService : IVendedorService
     {
         private readonly IVendedorRepository _vendedorRepository;
 
@@ -20,7 +21,14 @@ namespace loja_de_sapatos.Api.Services
 
         public async Task InsertVendedor(CreateVendedorDTO request)
         {
-            await _vendedorRepository.InsertVendedor(new Vendedor());
+            var vendedor = new Vendedor
+            {
+                Nome = request.Nome,
+                Endereco = new Endereco(request.Endereco.Rua, request.Endereco.Numero, request.Endereco.Bairro, request.Endereco.Cidade, request.Endereco.Estado)
+            };
+            await _vendedorRepository.InsertVendedor(vendedor);
+
         }
+
     }
 }

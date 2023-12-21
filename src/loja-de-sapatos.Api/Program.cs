@@ -9,11 +9,13 @@ namespace loja_de_sapatos.Api
         {
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
-
+            
             builder.Services.AdicionarInfraestrutura(configuration);
+            builder.Services.AdicionarApplication();
+            builder.Services.AddControllers();
             // Add services to the container.
 
-            builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
