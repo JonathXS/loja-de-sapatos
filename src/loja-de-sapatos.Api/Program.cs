@@ -1,5 +1,6 @@
 
 using loja_de_sapatos.Api.Configuration.DI;
+using loja_de_sapatos.Api.Mappers;
 
 namespace loja_de_sapatos.Api
 {
@@ -9,9 +10,10 @@ namespace loja_de_sapatos.Api
         {
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
-            
-            builder.Services.AdicionarInfraestrutura(configuration);
-            builder.Services.AdicionarApplication();
+
+            MapsterMaps.AddMappers();
+            builder.Services.AddInfrastructure(configuration);
+            builder.Services.AddApplication();
             builder.Services.AddControllers();
             // Add services to the container.
 

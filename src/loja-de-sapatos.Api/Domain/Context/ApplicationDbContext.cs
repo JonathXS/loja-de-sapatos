@@ -6,11 +6,11 @@ namespace loja_de_sapatos.Api.Domain.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Endereco> Enderecos { get; set;}
-        public DbSet<Produto> Produtos { get; set;}
-        public DbSet<Venda> Vendas { get; set;}
-        public DbSet<Vendedor> Vendedores { get; set;}
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Address> Address { get; set;}
+        public DbSet<Product> Product { get; set;}
+        public DbSet<Sale> Sale { get; set;}
+        public DbSet<Seller> Seller { get; set;}
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

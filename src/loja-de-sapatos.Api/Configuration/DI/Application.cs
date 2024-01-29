@@ -5,9 +5,12 @@ namespace loja_de_sapatos.Api.Configuration.DI
 {
     public static class Application
     {
-        public static IServiceCollection AdicionarApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IVendedorService, VendedorService>();
+            services.AddScoped<ISaleService, SaleService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ISellerService, SellerService>();
+            services.AddScoped<IClientService, ClientService>();
             return services;
         }  
     }

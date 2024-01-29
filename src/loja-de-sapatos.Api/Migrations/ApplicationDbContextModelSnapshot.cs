@@ -19,182 +19,182 @@ namespace loja_de_sapatos.Api.Migrations
                 .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Cliente", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataCriacao")
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("EnderecoId")
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnderecoId");
-
-                    b.ToTable("Clientes");
+                    b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Endereco", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("Numero")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Rua")
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Enderecos");
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Produto", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataCriacao")
+                    b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Preco")
+                    b.Property<double>("Price")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Venda", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Sale", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataCriacao")
+                    b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("ProdutoId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VendedorId")
+                    b.Property<int>("SellerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("ClientId");
 
-                    b.HasIndex("ProdutoId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("VendedorId");
+                    b.HasIndex("SellerId");
 
-                    b.ToTable("Vendas");
+                    b.ToTable("Sale");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Vendedor", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("EnderecoId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nome")
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnderecoId");
+                    b.HasIndex("AddressId");
 
-                    b.ToTable("Vendedores");
+                    b.ToTable("Seller");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Cliente", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Client", b =>
                 {
-                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Endereco", "Endereco")
+                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("EnderecoId")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Endereco");
+                    b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Venda", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Sale", b =>
                 {
-                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Cliente", "Cliente")
+                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("ClienteId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Produto", "Produto")
+                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProdutoId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Vendedor", "Vendedor")
+                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Seller", "Seller")
                         .WithMany()
-                        .HasForeignKey("VendedorId")
+                        .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cliente");
+                    b.Navigation("Client");
 
-                    b.Navigation("Produto");
+                    b.Navigation("Product");
 
-                    b.Navigation("Vendedor");
+                    b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Vendedor", b =>
+            modelBuilder.Entity("loja_de_sapatos.Api.Domain.Entities.Seller", b =>
                 {
-                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Endereco", "Endereco")
+                    b.HasOne("loja_de_sapatos.Api.Domain.Entities.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("EnderecoId")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Endereco");
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }
